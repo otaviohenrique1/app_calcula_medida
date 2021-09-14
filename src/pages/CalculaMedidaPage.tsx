@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { Alert, StyleSheet, View } from 'react-native';
-import { CalculaMedida } from '../utils/utils';
+import { ajudaCalculaMedida, CalculaMedida } from '../utils/utils';
 import { ContainerApp } from '../components/ContainerApp';
 import { Resultado } from '../components/Resultado';
 import { FormularioBotoes } from '../components/Formulario';
 import { Campo } from '../components/Campo';
+import { ModalAjuda } from '../components/ModalAjuda';
 
 const valoresIniciais = {
   campo: '',
@@ -16,6 +17,7 @@ export function CalculaMedidaPage() {
   const [campoA, setCampoA] = useState<string>(valoresIniciais.campo);
   const [campoB, setCampoB] = useState<string>(valoresIniciais.campo);
   const [campoC, setCampoC] = useState<string>(valoresIniciais.campo);
+  const [modalVisivel, setModalVisivel] = useState(false);
 
   function handleSubmitForm() {
     let valorA = parseFloat(campoA);
@@ -30,7 +32,7 @@ export function CalculaMedidaPage() {
     if (validaCampo) {
       return Alert.alert('Erro', 'Campos vazios');
     } else {
-      let resultado =CalculaMedida({
+      let resultado = CalculaMedida({
         campoA: valorA,
         campoB: valorB,
         campoC: valorC,
@@ -46,40 +48,51 @@ export function CalculaMedidaPage() {
     setCampoB(valoresIniciais.campo);
     setCampoC(valoresIniciais.campo);
   }
-
   return (
-    <ContainerApp
-      titulo="Calcula Medida"
-      exibeBotaoVoltar={true}
-    >
-      <View style={styles.campoContainer}>
-        <Campo
-          value={campoA}
-          placeholder='Campo A'
-          keyboardType='numeric'
-          onChangeText={setCampoA}
-        />
-        <Campo
-          value={campoB}
-          placeholder='Campo B'
-          keyboardType='numeric'
-          onChangeText={setCampoB}
-        />
-        <Campo
-          value={campoC}
-          placeholder='Campo C'
-          keyboardType='numeric'
-          onChangeText={setCampoC}
+    <>
+      <ContainerApp
+        titulo="Calcula Medida"
+        exibeBotaoVoltar={true}
+        exibeBotaoAjuda={true}
+        botaoAjudaFuncao={() => setModalVisivel(true)}
+      >
+        <View style={styles.campoContainer}>
+          <Campo
+            value={campoA}
+            placeholder='Campo A'
+            keyboardType='numeric'
+            onChangeText={setCampoA}
+          />
+          <Campo
+            value={campoB}
+            placeholder='Campo B'
+            keyboardType='numeric'
+            onChangeText={setCampoB}
+          />
+          <Campo
+            value={campoC}
+            placeholder='Campo C'
+            keyboardType='numeric'
+            onChangeText={setCampoC}
+          />
+        </View>
+        <Resultado
+          resultado={resultado}
         />
         <FormularioBotoes
           handleSubmitForm={handleSubmitForm}
           handleResetForm={handleResetForm}
         />
-      </View>
-      <Resultado
-        resultado={resultado}
+      </ContainerApp>
+      <ModalAjuda
+        visible={modalVisivel}
+        onRequestClose={() => {
+          setModalVisivel(!modalVisivel);
+        }}
+        onPress={() => setModalVisivel(!modalVisivel)}
+        ajudaConteudo={ajudaCalculaMedida}
       />
-    </ContainerApp>
+    </>
   );
 }
 

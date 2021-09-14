@@ -20,7 +20,10 @@ export function Rotas() {
       screenOptions={{
         headerShown: false,
       }}
-      initialRouteName="Menu"
+      // initialRouteName="Menu"
+      // initialRouteName="CalculaMedida"
+      // initialRouteName="TeoremaPitagoras"
+      // initialRouteName="PerimetroCirculo"
     >
       <Stack.Screen name="Menu" component={MenuPage} />
       <Stack.Screen name="CalculaMedida" component={CalculaMedidaPage} />

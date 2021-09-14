@@ -1,6 +1,6 @@
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import React from 'react';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { Botao } from '../components/Botao';
 import { ContainerApp } from '../components/ContainerApp';
 import { RootStackParamList } from './routes';
@@ -13,33 +13,36 @@ export function MenuPage({ navigation }: NavigationProps) {
   return (
     <ContainerApp
       titulo="Menu"
-      exibeBotaoVoltar={true}
-      styleAdicional={styles.container}
+      exibeBotaoVoltar={false}
+      exibeBotaoAjuda={false}
     >
-      <Botao
-        styleTouchableHighlight={styles.botao}
-        styleText={styles.botaoTitulo}
-        botaoTexto="Calcula Medida"
-        onPress={() => navigation.navigate('CalculaMedida')}
-      />
-      <Botao
-        styleTouchableHighlight={styles.botao}
-        styleText={styles.botaoTitulo}
-        botaoTexto="Teorema de Pitagoras"
-        onPress={() => navigation.navigate('TeoremaPitagoras')}
-      />
-      <Botao
-        styleTouchableHighlight={styles.botao}
-        styleText={styles.botaoTitulo}
-        botaoTexto="Perimetro do Circulo"
-        onPress={() => navigation.navigate('PerimetroCirculo')}
-      />
+      <View style={styles.menuBotoes}>
+        <Botao
+          styleTouchableHighlight={styles.botao}
+          styleText={styles.botaoTitulo}
+          botaoTexto="Calcula Medida"
+          onPress={() => navigation.navigate('CalculaMedida')}
+        />
+        <Botao
+          styleTouchableHighlight={styles.botao}
+          styleText={styles.botaoTitulo}
+          botaoTexto="Teorema de Pitagoras"
+          onPress={() => navigation.navigate('TeoremaPitagoras')}
+        />
+        <Botao
+          styleTouchableHighlight={styles.botao}
+          styleText={styles.botaoTitulo}
+          botaoTexto="Perimetro do Circulo"
+          onPress={() => navigation.navigate('PerimetroCirculo')}
+        />
+      </View>
     </ContainerApp>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
+  menuBotoes: {
+    paddingVertical: 15,
     paddingHorizontal: 10,
     flexDirection: 'column',
   },

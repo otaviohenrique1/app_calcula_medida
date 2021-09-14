@@ -16,23 +16,23 @@ export function Container(props: ContainerProps) {
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#ffffff',
-  },
-});
-
-
 export function ContainerApp(props: ContainerProps & HeaderProps ) {
   return (
     <Container>
       <Header
         titulo={props.titulo}
         exibeBotaoVoltar={props.exibeBotaoVoltar}
+        styleAdicionalTitulo={props.styleAdicionalTitulo}
       />
       {props.children}
       <StatusBar style="auto" />
     </Container>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#ffffff',
+  },
+});

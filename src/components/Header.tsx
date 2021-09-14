@@ -1,50 +1,79 @@
-import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { useNavigation } from '@react-navigation/native';
 import React from 'react';
-import { StyleSheet, Text, TouchableHighlight, View } from 'react-native';
-import { RootStackParamList } from '../pages/routes';
-
-type NavigationProps = { 
-  navigation: NativeStackNavigationProp<RootStackParamList>;
-}
+import { GestureResponderEvent, StyleProp, StyleSheet, Text, TextStyle, TouchableHighlight, View } from 'react-native';
+import { AntDesign } from '@expo/vector-icons';
+import { Feather } from '@expo/vector-icons';
 
 export interface HeaderProps {
   titulo: string;
   exibeBotaoVoltar?: boolean;
+  exibeBotaoAjuda?: boolean;
+  botaoAjudaFuncao?: any;
+  styleAdicionalTitulo?: StyleProp<TextStyle>;
 }
 
-export function Header(props: HeaderProps, { navigation }: NavigationProps) {
+export function Header(props: HeaderProps) {
+  const navigation = useNavigation();
+
   return (
     <View style={styles.tituloContainer}>
       {(props.exibeBotaoVoltar) && (
         <TouchableHighlight
-          onPress={() => navigation.navigate('Menu')}
+          onPress={() => navigation.goBack()}
+          style={styles.botaoVoltar}
         >
-          <Text style={styles.titulo}>{'<'}</Text>
+          <AntDesign name="arrowleft" size={40} color="white" />
         </TouchableHighlight>
       )}
-      <Text style={styles.titulo}>
+      <Text style={[styles.titulo, props.styleAdicionalTitulo]}>
         {props.titulo}
       </Text>
+      {(props.exibeBotaoVoltar) && (
+        <TouchableHighlight
+          onPress={props.botaoAjudaFuncao}
+          style={styles.botaoAjuda}
+        >
+          <Feather name="help-circle" size={40} color="white" />
+        </TouchableHighlight>
+      )}
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   tituloContainer: {
-    paddingTop: 30,
+    flexDirection: 'row',
+    // paddingTop: 30,
+    paddingTop: 10,
     paddingBottom: 10,
+    marginTop: 25,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: 'gray',
+    backgroundColor: 'steelblue',
+    height: 80,
   },
   titulo: {
     fontSize: 30,
+    textAlign: 'center',
     width: '100%',
+    color: 'white',
   },
   botaoVoltar: {
-    width: 40,
+    borderRadius: 20,
+    width: 50,
+    height: 50,
+    alignItems: 'center',
+    justifyContent: 'center',
+    position: 'absolute',
+    left: 5,
   },
-  botaoVoltarTexto: {
-    fontSize: 30,
-  }
+  botaoAjuda: {
+    borderRadius: 20,
+    width: 50,
+    height: 50,
+    alignItems: 'center',
+    justifyContent: 'center',
+    position: 'absolute',
+    right: 5,
+  },
 });

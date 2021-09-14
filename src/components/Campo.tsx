@@ -25,9 +25,10 @@ const styles = StyleSheet.create({
   campo: {
     width: '100%',
     paddingHorizontal: 15,
+    paddingVertical: 5,
     marginBottom: 20,
     borderBottomWidth: 1,
     borderBottomColor: '#000000',
-    fontSize: 15,
+    fontSize: 20,
   },
 });

@@ -17,6 +17,7 @@ export function Resultado(props: ResultadoProps) {
 const styles = StyleSheet.create({
   resultadoContainer: {
     paddingHorizontal: 20,
+    paddingVertical: 10,
     width: '100%',
     flexDirection: 'column',
   },
@@ -26,6 +27,6 @@ const styles = StyleSheet.create({
   },
   resultado: {
     textAlign: 'right',
-    fontSize: 30,
+    fontSize: 20,
   },
 });
