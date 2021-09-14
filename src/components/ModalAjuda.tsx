@@ -15,40 +15,63 @@ interface ModalAjudaContainerProps {
 export function ModalAjuda(props: ModalAjudaContainerProps) {
   return (
     <Modal
-      animationType="slide"
+      animationType="fade"
       transparent={true}
       visible={props.visible}
       onRequestClose={props.onRequestClose}
     >
       <View style={stylesModal.centeredView}>
         <View style={stylesModal.modalView}>
-          <View>
-            <Text>
-              {props.ajudaConteudo[0].titulo}
-            </Text>
-            {props.ajudaConteudo[0].lista.map((item, index) => (
-              <Text key={index}>{item}</Text>
-            ))}
-          </View>
-          <View>
-            <Text>
-              {props.ajudaConteudo[1].titulo}
-            </Text>
-            {props.ajudaConteudo[1].lista.map((item, index) => (
-              <Text key={index}>{item}</Text>
-            ))}
-          </View>
+          <ModalConteudo
+            titulo={props.ajudaConteudo[0].titulo}
+            lista={props.ajudaConteudo[0].lista}
+          />
+          <ModalSeparador />
+          <ModalConteudo
+            titulo={props.ajudaConteudo[1].titulo}
+            lista={props.ajudaConteudo[1].lista}
+          />
+          <ModalSeparador />
           <Pressable
             style={[stylesModal.botao, stylesModal.botaoFechar]}
             onPress={props.onPress}
           >
-            <Text style={stylesModal.botaoFecharTitulo}>Hide Modal</Text>
+            <Text style={stylesModal.botaoFecharTitulo}>Fechar</Text>
           </Pressable>
         </View>
       </View>
     </Modal>
   );
 };
+
+function ModalSeparador() {
+  return (
+    <View style={stylesModal.modalConteudoSeparador} />
+  );
+}
+
+interface ModalConteudoProps {
+  titulo: string;
+  lista: string[];
+}
+
+function ModalConteudo(props: ModalConteudoProps) {
+  return (
+    <View style={stylesModal.modalConteudoContainer}>
+      <Text style={stylesModal.modalConteudoTitulo}>
+        {props.titulo}
+      </Text>
+      <View style={stylesModal.modalConteudoLista}>
+        {props.lista.map((item, index) => (
+          <Text
+            key={index}
+            style={stylesModal.modalConteudoListaItem}
+          >{item}</Text>
+        ))}
+      </View>
+    </View>
+  );
+}
 
 const stylesModal = StyleSheet.create({
   centeredView: {
@@ -62,7 +85,6 @@ const stylesModal = StyleSheet.create({
     backgroundColor: "white",
     borderRadius: 20,
     padding: 35,
-    alignItems: "center",
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
@@ -74,16 +96,38 @@ const stylesModal = StyleSheet.create({
     flexDirection: 'column',
   },
   botao: {
-    borderRadius: 20,
+    borderRadius: 10,
     padding: 10,
     elevation: 2
   },
   botaoFechar: {
     backgroundColor: "#2196F3",
+    marginTop: 20,
   },
   botaoFecharTitulo: {
     color: "white",
     fontWeight: "bold",
     textAlign: "center"
   },
+  modalConteudoSeparador: {
+    width: 150,
+    height: 2,
+    backgroundColor: 'lightgray',
+    marginVertical: 10
+  },
+  modalConteudoContainer: {
+    width: '100%',
+    marginBottom: 10,
+    flexDirection: 'column',
+  },
+  modalConteudoTitulo: {
+    fontSize: 20,
+    paddingBottom: 5
+  },
+  modalConteudoLista: {
+    paddingLeft: 15,
+  },
+  modalConteudoListaItem: {
+    fontSize: 15,
+  }
 });

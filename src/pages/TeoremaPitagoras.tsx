@@ -1,3 +1,4 @@
+import { useNavigation } from '@react-navigation/native';
 import React, { useState } from 'react';
 import { Alert, StyleSheet, Text, View } from 'react-native';
 import { Campo } from '../components/Campo';
@@ -18,6 +19,7 @@ export function TeoremaPitagoras() {
   const [catetoA, setCatetoA] = useState<string>(valoresIniciais.campo);
   const [catetoB, setCatetoB] = useState<string>(valoresIniciais.campo);
   const [modalVisivel, setModalVisivel] = useState(false);
+  const navigation = useNavigation();
   
   function handleSubmitForm() {
     let valorHipotenusa = parseFloat(hipotenusa);
@@ -52,9 +54,11 @@ export function TeoremaPitagoras() {
     <>
       <ContainerApp
         titulo="Teorema de Pitagoras"
-        exibeBotaoVoltar={true}
-        exibeBotaoAjuda={true}
-        botaoAjudaFuncao={() => setModalVisivel(true)}
+        exibeBotaoVoltar={false}
+        exibeBotaoAjuda={false}
+        // exibeBotaoVoltar={true}
+        // exibeBotaoAjuda={true}
+        // botaoAjudaFuncao={() => setModalVisivel(true)}
         styleAdicional={styles.containerApp}
         styleAdicionalTitulo={styles.titulo}
       >
@@ -87,6 +91,8 @@ export function TeoremaPitagoras() {
           <FormularioBotoes
             handleSubmitForm={handleSubmitForm}
             handleResetForm={handleResetForm}
+            handleAjuda={() => setModalVisivel(true)}
+            handleVoltar={() => navigation.goBack()}
           />
         </View>
       </ContainerApp>
@@ -158,6 +164,6 @@ const styles = StyleSheet.create({
     bottom: "5%",
   },
   campo: {
-    marginBottom: 30,
+    marginBottom: 10,
   }
 });

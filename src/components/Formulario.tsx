@@ -5,23 +5,41 @@ import { Botao } from "./Botao";
 interface FormularioBotoesProps {
   handleSubmitForm: ((event: GestureResponderEvent) => void);
   handleResetForm: ((event: GestureResponderEvent) => void);
+  handleVoltar: ((event: GestureResponderEvent) => void);
+  handleAjuda: ((event: GestureResponderEvent) => void);
 }
 
 export function FormularioBotoes(props: FormularioBotoesProps) {
   return (
     <BotaoContainerFormulario>
-      <Botao
-        styleTouchableHighlight={[styles.botao, styles.botaoCalcular]}
-        styleText={styles.botaoTitulo}
-        onPress={props.handleSubmitForm}
-        botaoTexto="Calcular"
-      />
-      <Botao
-        styleTouchableHighlight={[styles.botao, styles.botaoLimpar]}
-        styleText={styles.botaoTitulo}
-        onPress={props.handleResetForm}
-        botaoTexto="Limpar"
-      />
+      <View style={styles.botaoRow}>
+        <Botao
+          styleTouchableHighlight={[styles.botao, styles.botaoCalcular]}
+          styleText={styles.botaoTitulo}
+          onPress={props.handleSubmitForm}
+          botaoTexto="Calcular"
+        />
+        <Botao
+          styleTouchableHighlight={[styles.botao, styles.botaoLimpar]}
+          styleText={styles.botaoTitulo}
+          onPress={props.handleResetForm}
+          botaoTexto="Limpar"
+        />
+      </View>
+      <View style={styles.botaoRow}>
+        <Botao
+          styleTouchableHighlight={[styles.botao, styles.botaoVoltar]}
+          styleText={styles.botaoTitulo}
+          onPress={props.handleVoltar}
+          botaoTexto="Voltar"
+        />
+        <Botao
+          styleTouchableHighlight={[styles.botao, styles.botaoAjuda]}
+          styleText={styles.botaoTitulo}
+          onPress={props.handleAjuda}
+          botaoTexto="Ajuda"
+        />
+      </View>
     </BotaoContainerFormulario>
   );
 }
@@ -40,12 +58,16 @@ function BotaoContainerFormulario(props: BotaoContainerFormularioProps) {
 
 const styles = StyleSheet.create({
   botaoContainer: {
-    flexDirection: 'row',
+    flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
     marginTop: 10,
     marginBottom: 20,
     width: '100%',
+  },
+  botaoRow: {
+    flexDirection: 'row',
+    marginBottom: 10
   },
   botao: {
     alignItems: 'center',
@@ -61,9 +83,18 @@ const styles = StyleSheet.create({
   },
   botaoCalcular: {
     backgroundColor: 'cadetblue',
-    marginRight: 10
+    marginRight: 10,
   },
   botaoLimpar: {
-    backgroundColor: 'red',
+    backgroundColor: 'blue',
+    marginLeft: 10,
+  },
+  botaoVoltar: {
+    backgroundColor: 'blueviolet',
+    marginRight: 10,
+  },
+  botaoAjuda: {
+    backgroundColor: 'midnightblue',
+    marginLeft: 10,
   },
 });

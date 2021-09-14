@@ -6,6 +6,7 @@ import { Resultado } from '../components/Resultado';
 import { FormularioBotoes } from '../components/Formulario';
 import { Campo } from '../components/Campo';
 import { ModalAjuda } from '../components/ModalAjuda';
+import { useNavigation } from '@react-navigation/core';
 
 const valoresIniciais = {
   campo: '',
@@ -18,6 +19,7 @@ export function CalculaMedidaPage() {
   const [campoB, setCampoB] = useState<string>(valoresIniciais.campo);
   const [campoC, setCampoC] = useState<string>(valoresIniciais.campo);
   const [modalVisivel, setModalVisivel] = useState(false);
+  const navigation = useNavigation();
 
   function handleSubmitForm() {
     let valorA = parseFloat(campoA);
@@ -52,9 +54,11 @@ export function CalculaMedidaPage() {
     <>
       <ContainerApp
         titulo="Calcula Medida"
-        exibeBotaoVoltar={true}
-        exibeBotaoAjuda={true}
-        botaoAjudaFuncao={() => setModalVisivel(true)}
+        exibeBotaoVoltar={false}
+        exibeBotaoAjuda={false}
+        // exibeBotaoVoltar={true}
+        // exibeBotaoAjuda={true}
+        // botaoAjudaFuncao={() => setModalVisivel(true)}
       >
         <View style={styles.campoContainer}>
           <Campo
@@ -82,6 +86,8 @@ export function CalculaMedidaPage() {
         <FormularioBotoes
           handleSubmitForm={handleSubmitForm}
           handleResetForm={handleResetForm}
+          handleAjuda={() => setModalVisivel(true)}
+          handleVoltar={() => navigation.goBack()}
         />
       </ContainerApp>
       <ModalAjuda

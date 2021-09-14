@@ -1,3 +1,4 @@
+import { useNavigation } from '@react-navigation/native';
 import React, { useState } from 'react';
 import { Alert, Modal, Pressable, StyleSheet, Text, View } from 'react-native';
 import { Campo } from '../components/Campo';
@@ -16,6 +17,7 @@ export function PerimetroCirculo() {
   const [resultado, setResultado] = useState<string>(valoresIniciais.resultado);
   const [campoValor, setCampoValor] = useState<string>(valoresIniciais.campo);
   const [modalVisivel, setModalVisivel] = useState(false);
+  const navigation = useNavigation();
 
   function handleSubmitForm() {
     let valor = parseFloat(campoValor);
@@ -43,9 +45,11 @@ export function PerimetroCirculo() {
     <>
       <ContainerApp
         titulo="Perimetro do Circulo"
-        exibeBotaoVoltar={true}
-        exibeBotaoAjuda={true}
-        botaoAjudaFuncao={() => setModalVisivel(true)}
+        exibeBotaoVoltar={false}
+        exibeBotaoAjuda={false}
+        // exibeBotaoVoltar={true}
+        // exibeBotaoAjuda={true}
+        // botaoAjudaFuncao={() => setModalVisivel(true)}
         styleAdicional={styles.containerApp}
         styleAdicionalTitulo={styles.titulo}
       >
@@ -64,6 +68,8 @@ export function PerimetroCirculo() {
           <FormularioBotoes
             handleSubmitForm={handleSubmitForm}
             handleResetForm={handleResetForm}
+            handleAjuda={() => setModalVisivel(true)}
+            handleVoltar={() => navigation.goBack()}
           />
         </View>
       </ContainerApp>
