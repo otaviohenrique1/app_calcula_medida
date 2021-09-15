@@ -25,7 +25,6 @@ export function CalculaMedida({campoA, campoB, campoC}: CalculaMedidaProps): str
     parametro2: resultado,
     parametro3: resultado
   });
-  // let texto = `${campoC} -> ${resultado.toFixed(2)} -> ${Math.round(resultado).toFixed(2)}`;
   return texto;
 }
 
@@ -38,7 +37,6 @@ interface TeoremaDePitagorasProps {
 export function CalculaTeoremaPitagoras({
   hipotenusa, catetoA, catetoB
 }: TeoremaDePitagorasProps): string {
-  // h^2 = ca^2 + cb^2
   let texto = '';
   if (hipotenusa === 0) {
     texto = calculoHipotenusa({ catetoA, catetoB });
@@ -56,7 +54,6 @@ interface CalculoHipotenusaProps {
 }
 
 function calculoHipotenusa({ catetoA, catetoB }: CalculoHipotenusaProps): string {
-  // h = raiz2(ca^2 + cb^2)
   let titulo = 'Hipotenusa';
   let resultado = Math.sqrt((Math.pow(catetoA, 2) + Math.pow(catetoB, 2)));
   let texto = templateCalculo({
@@ -64,7 +61,6 @@ function calculoHipotenusa({ catetoA, catetoB }: CalculoHipotenusaProps): string
     parametro2: resultado,
     parametro3: resultado
   });
-  // let texto = `${titulo} -> ${resultado.toFixed(2)} -> ${Math.round(resultado).toFixed(2)}`;
   return texto;
 }
 
@@ -74,7 +70,6 @@ interface CalculoCatetoAProps {
 }
 
 function calculoCatetoA({ hipotenusa, catetoB }: CalculoCatetoAProps): string {
-  // ca = raiz2(h^2 - cb^2)
   let titulo = 'Cateto A';
   let resultado = Math.sqrt((Math.pow(hipotenusa, 2) - Math.pow(catetoB, 2)));
   let texto = templateCalculo({
@@ -82,7 +77,6 @@ function calculoCatetoA({ hipotenusa, catetoB }: CalculoCatetoAProps): string {
     parametro2: resultado,
     parametro3: resultado
   });
-  // let texto = `${titulo} -> ${resultado.toFixed(2)} -> ${Math.round(resultado).toFixed(2)}`;
   return texto;
 }
 
@@ -92,7 +86,6 @@ interface CalculoCatetoBProps {
 }
 
 function calculoCatetoB({ hipotenusa, catetoA }: CalculoCatetoBProps): string {
-  // cb = raiz2(h^2 - ca^2)
   let titulo = 'Cateto B';
   let resultado = Math.sqrt((Math.pow(hipotenusa, 2) - Math.pow(catetoA, 2)));
   let texto = templateCalculo({
@@ -100,7 +93,6 @@ function calculoCatetoB({ hipotenusa, catetoA }: CalculoCatetoBProps): string {
     parametro2: resultado,
     parametro3: resultado
   });
-  // let texto = `${titulo} -> ${resultado.toFixed(2)} -> ${Math.round(resultado).toFixed(2)}`;
   return texto;
 }
 
@@ -115,7 +107,6 @@ export function CalculaPerimetroCirculo({ valor }: PerimetroCirculoProps): strin
     parametro2: resultado,
     parametro3: resultado
   });
-  // let texto = `${valor} -> ${resultado.toFixed(2)} -> ${Math.round(resultado).toFixed(2)}`;
   return texto;
 }
 
@@ -179,27 +170,3 @@ export const ajudaTeoremaPitagoras = [
     ],
   },
 ];
-
-// export function CalculaTeoremaPitagoras({
-//   hipotenusa, catetoA, catetoB
-// }: TeoremaDePitagorasProps): string {
-//   // h^2 = ca^2 + cb^2
-//   let resultado = 0;
-//   let titulo = '';
-//   let texto = '';
-//   if (hipotenusa === 0) {
-//     // h = raiz2(ca^2 + cb^2)
-//     titulo = 'hipotenusa';
-//     Math.sqrt((Math.pow(catetoA, 2) + Math.pow(catetoB, 2)));
-//   } else if (catetoA === 0) {
-//     // ca = raiz2(h^2 - cb^2)
-//     titulo = 'cateto A';
-//     Math.sqrt((Math.pow(catetoB, 2) - Math.pow(hipotenusa, 2)));
-//   } else if (catetoB === 0) {
-//     // cb = raiz2(h^2 - ca^2)
-//     titulo = 'cateto B';
-//     Math.sqrt((Math.pow(hipotenusa, 2) - Math.pow(catetoA, 2)));
-//   } 
-//   texto = `${titulo} -> ${resultado.toFixed(2)} -> ${Math.round(resultado).toFixed(2)}`;
-//   return texto;
-// }

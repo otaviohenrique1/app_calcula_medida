@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { ReactNode } from 'react';
-import { View, StyleProp, Text, TouchableHighlight, ViewStyle, StyleSheet, ScrollView } from 'react-native';
+import { View, StyleProp, ViewStyle, StyleSheet, ScrollView } from 'react-native';
 import { Header, HeaderProps } from './Header';
 
 interface ContainerProps {

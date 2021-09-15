@@ -56,9 +56,6 @@ export function TeoremaPitagoras() {
         titulo="Teorema de Pitagoras"
         exibeBotaoVoltar={false}
         exibeBotaoAjuda={false}
-        // exibeBotaoVoltar={true}
-        // exibeBotaoAjuda={true}
-        // botaoAjudaFuncao={() => setModalVisivel(true)}
         styleAdicional={styles.containerApp}
         styleAdicionalTitulo={styles.titulo}
       >

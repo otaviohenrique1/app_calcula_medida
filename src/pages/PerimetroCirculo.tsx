@@ -47,9 +47,6 @@ export function PerimetroCirculo() {
         titulo="Perimetro do Circulo"
         exibeBotaoVoltar={false}
         exibeBotaoAjuda={false}
-        // exibeBotaoVoltar={true}
-        // exibeBotaoAjuda={true}
-        // botaoAjudaFuncao={() => setModalVisivel(true)}
         styleAdicional={styles.containerApp}
         styleAdicionalTitulo={styles.titulo}
       >
