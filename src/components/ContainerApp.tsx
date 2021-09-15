@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { ReactNode } from 'react';
-import { View, StyleProp, Text, TouchableHighlight, ViewStyle, StyleSheet } from 'react-native';
+import { View, StyleProp, Text, TouchableHighlight, ViewStyle, StyleSheet, ScrollView } from 'react-native';
 import { Header, HeaderProps } from './Header';
 
 interface ContainerProps {
@@ -11,7 +11,7 @@ interface ContainerProps {
 export function Container(props: ContainerProps) {
   return (
     <View style={[styles.container, props.styleAdicional]}>
-      {props.children}
+        {props.children}
     </View>
   );
 }
@@ -24,7 +24,9 @@ export function ContainerApp(props: ContainerProps & HeaderProps ) {
         exibeBotaoVoltar={props.exibeBotaoVoltar}
         styleAdicionalTitulo={props.styleAdicionalTitulo}
       />
-      {props.children}
+      <ScrollView>
+        {props.children}
+      </ScrollView>
       <StatusBar style="auto" />
     </Container>
   );
